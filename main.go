@@ -8,5 +8,5 @@ import (
 func main() {
 	srv := new(types.Server)
 	handler := new(handler.Handler)
-	srv.Serve("8080", handler.ServeRoutes()) // the handler is nil just for a while
+	srv.Serve("8080", handler.ServeRoutes())
 }
