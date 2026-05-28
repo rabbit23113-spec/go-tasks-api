@@ -14,9 +14,9 @@ type NewPostgresDb struct {
 	db *sqlx.DB
 }
 
-func (pg *NewPostgresDb) Connect() error {
+func (pg *NewPostgresDb) Connect() (*sqlx.DB, error) {
 	var cfg config.Config
-	file, err := os.ReadFile("config.yml")
+	file, err := os.ReadFile("package/config/config.yml")
 	if err != nil {
 		log.Fatalf("Error: %v", err)
 	}
@@ -26,5 +26,5 @@ func (pg *NewPostgresDb) Connect() error {
 		log.Fatalf("Error: %v", err)
 	}
 	pg.db = db
-	return nil
+	return db, nil
 }

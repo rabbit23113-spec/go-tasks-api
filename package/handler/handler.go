@@ -12,20 +12,21 @@ type Handler struct {
 
 func (h *Handler) ServeRoutes() *gin.Engine {
 	router := gin.New()
-	authHandler := new(AuthHandler)
+	AuthHandler := new(AuthHandler)
+	TasksHandler := new(TasksHandler)
 
 	auth := router.Group("/auth")
 	{
-		auth.POST("/signup", authHandler.SignUp)
-		auth.POST("/signin", authHandler.SignIn)
+		auth.POST("/signup", AuthHandler.SignUp)
+		auth.POST("/signin", AuthHandler.SignIn)
 	}
 	tasks := router.Group("/tasks")
 	{
-		tasks.GET("/")
-		tasks.GET("/:id")
-		tasks.POST("/")
-		tasks.PATCH("/:id")
-		tasks.DELETE("/:id")
+		tasks.GET("/", TasksHandler.Action)
+		tasks.GET("/:id", TasksHandler.Action)
+		tasks.POST("/", TasksHandler.Action)
+		tasks.PATCH("/:id", TasksHandler.Action)
+		tasks.DELETE("/:id", TasksHandler.Action)
 	}
 	return router
 }

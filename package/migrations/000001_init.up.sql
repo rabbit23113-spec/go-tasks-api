@@ -1,5 +1,5 @@
 CREATE TABLE users (
-    id int PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     firstName varchar(255) NOT NULL,
     lastName varchar(255) NOT NULL,
     email varchar(255) NOT NULL UNIQUE,
@@ -7,7 +7,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE tasks (
-    id int PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     title varchar(255) NOT NULL,
     description varchar(255) NOT NULL,
     isCompleted varchar(255) NOT NULL
