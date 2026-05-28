@@ -10,5 +10,5 @@ type DBConfig struct {
 }
 
 type Config struct {
-	dbcfg DBConfig `yaml:"db"`
+	DBCfg DBConfig `yaml:"db"`
 }
