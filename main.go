@@ -1,8 +1,12 @@
 package main
 
-import "main/package/types"
+import (
+	"main/package/handler"
+	"main/package/types"
+)
 
 func main() {
 	srv := new(types.Server)
-	srv.Serve("8080", nil) // the handler is nil just for a while
+	handler := new(handler.Handler)
+	srv.Serve("8080", handler.ServeRoutes()) // the handler is nil just for a while
 }

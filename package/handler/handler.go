@@ -10,13 +10,14 @@ type Handler struct {
 	handler http.Handler
 }
 
-func (h *Handler) ServeRoutes() {
+func (h *Handler) ServeRoutes() *gin.Engine {
 	router := gin.New()
+	authHandler := new(AuthHandler)
+
 	auth := router.Group("/auth")
 	{
-		auth.POST("/signup")
-		auth.POST("/signin")
-		auth.POST("/logout")
+		auth.POST("/signup", authHandler.SignUp)
+		auth.POST("/signin", authHandler.SignIn)
 	}
 	tasks := router.Group("/tasks")
 	{
@@ -26,4 +27,5 @@ func (h *Handler) ServeRoutes() {
 		tasks.PATCH("/:id")
 		tasks.DELETE("/:id")
 	}
+	return router
 }
